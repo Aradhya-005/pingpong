@@ -1,16 +1,10 @@
 import { PrismaClient } from "@/app/generated/prisma/client"
-import { PrismaNeon } from "@prisma/adapter-neon"
 import { NextResponse } from "next/server"
 
-export const runtime = "edge";
-
-// Create a Neon adapter using our database URL from .env
-// This is how Prisma knows HOW to talk to Neon specifically
-const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL })
 
 // Create a single Prisma client instance
 // We use this to read/write to our database
-const prisma = new PrismaClient({ adapter })
+const prisma = new PrismaClient()
 
 export async function POST(request: Request) {
   // Get the URL the user wants to test from the request body
