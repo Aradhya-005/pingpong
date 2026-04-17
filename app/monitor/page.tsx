@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import LatencyChart from "../components/LatencyChart";
@@ -13,8 +14,14 @@ type HistoryItem = {
   latency: number;
   timestamp: string;
 };
-
 export default function MonitorPage() {
+  return (
+    <Suspense fallback={<div>Loading monitor...</div>}>
+      <MonitorContent />
+    </Suspense>
+  );
+}
+function MonitorContent() {
   // Read the ?url= query param from the browser address bar
   const searchParams = useSearchParams();
   const url = searchParams.get("url") || "";
