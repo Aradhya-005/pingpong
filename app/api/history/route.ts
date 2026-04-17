@@ -2,6 +2,8 @@ import { PrismaClient } from "@/app/generated/prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge";
+
 // Prisma client setup with Neon adapter
 const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
